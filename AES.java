@@ -4,16 +4,16 @@ import java.security.SecureRandom;
 import java.util.Base64;
 import java.util.Scanner;
 
-public class Main {
+public class AES {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter a string to encrypt: ");
         String input = scanner.nextLine();
         try {
             byte[] key = generateKey(256);
-            String encrypted = AES.encrypt(input, key);
+            String encrypted = AESKrypto.encrypt(input, key);
             System.out.println("Encrypted string: " + encrypted);
-            String decrypted = AES.decrypt(encrypted, key);
+            String decrypted = AESKrypto.decrypt(encrypted, key);
             System.out.println("Decrypted string: " + decrypted);
             scanner.close();
         } catch (Exception e) {
@@ -21,7 +21,7 @@ public class Main {
         }
     }
 
-    public static class AES {
+    public static class AESKrypto {
         private static final String ALGORITHM = "AES";
 
         public static String encrypt(String value, byte[] key) throws Exception {
